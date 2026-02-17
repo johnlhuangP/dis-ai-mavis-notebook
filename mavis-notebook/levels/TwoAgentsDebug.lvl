@@ -1,0 +1,23 @@
+#domain
+hospital
+#levelname
+TwoAgentsDebug
+#colors
+blue: 0,1,2
+#initial
++++++++
++012  +
++     +
++     +
++     +
++     +
++++++++
+#goal
++++++++
++     +
++     +
++     +
++     +
++01   +
++++++++
+#end
