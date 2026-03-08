@@ -77,6 +77,21 @@ def graph_search(
     while not frontier.is_empty():
         
         print("Frontier:", frontier)
+
+        print(f"\n--- Frontier (size={frontier.size()}) ---")
+        if hasattr(frontier, 'priority_queue'):
+            for s, entry in frontier.priority_queue.entry_finder.items():
+                if entry[2] is not None: 
+                    f_val = entry[0]
+                    g_val = s.path_cost
+                    if hasattr(frontier, 'heuristic'):
+                        h_val = frontier.heuristic.h(s, goal_description)
+                    else:
+                        h_val = "N/A"
+                    print(f"  State (g={g_val}, h={h_val}, f={f_val})")
+        print("---")
+
+
         next_state = frontier.pop()
         print("Expanding state:", next_state)
 
@@ -118,6 +133,7 @@ def print_search_status(expanded, frontier, print_search_meta_data=True):
     memory_usage_mb = f"{memory_usage_bytes / (1024*1024):3.2f}".replace('.', ',')
     status_text = f"#Expanded: {num_expanded}, #Frontier: {num_frontier}, #Generated: {num_generated}," \
                   f" Time: {elapsed_time} s, Memory: {memory_usage_mb} MB\n\n"
+    
     
     if print_search_meta_data:
         print(status_text, file=sys.stderr)
